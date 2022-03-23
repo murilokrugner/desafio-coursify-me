@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 
 import {
   Container,
@@ -8,14 +7,21 @@ import {
   TextButtonViewMore,
 } from './styles';
 
+import PostsList from '../PostsList';
+
 const CategoryList: React.FC = () => {
   return (
-    <Container>
-      <CategoryName>CURSOS ONLINE</CategoryName>
-      <ButtonViewMore>
-        <TextButtonViewMore>VER MAIS ►</TextButtonViewMore>
-      </ButtonViewMore>
-    </Container>
+    <>
+      <Container>
+        <CategoryName>CURSOS ONLINE</CategoryName>
+
+        <ButtonViewMore>
+          <TextButtonViewMore>VER MAIS ►</TextButtonViewMore>
+        </ButtonViewMore>
+      </Container>
+
+      <PostsList />
+    </>
   );
 };
 

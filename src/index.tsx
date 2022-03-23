@@ -1,8 +1,11 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
+
 import {StatusBar, LogBox} from 'react-native';
+
 import colors from './global/styles/colors';
+
 import App from './App';
 
 LogBox.ignoreLogs([
@@ -13,6 +16,7 @@ const index: React.FC = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={colors.primary} />
+
       <App />
     </>
   );

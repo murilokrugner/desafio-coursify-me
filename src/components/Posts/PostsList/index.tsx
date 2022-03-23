@@ -1,4 +1,6 @@
 import React from 'react';
+
+import {useNavigation} from '@react-navigation/native';
 import ImageLogo from '../../../assets/logo.png';
 
 import {
@@ -14,6 +16,12 @@ import {
 } from './styles';
 
 const PostsList: React.FC = () => {
+  const navigation = useNavigation();
+
+  function handleNavigation(id: number) {
+    navigation.navigate('ViewPost', id);
+  }
+
   return (
     <Container>
       <ContainerPost>
@@ -30,7 +38,10 @@ const PostsList: React.FC = () => {
           </DescriptionPost>
         </ContainerDescriptionPost>
 
-        <ContainerReadMore>
+        <ContainerReadMore
+          onPress={() => {
+            handleNavigation(1);
+          }}>
           <ReadMore>Ler mais</ReadMore>
         </ContainerReadMore>
       </ContainerPost>
