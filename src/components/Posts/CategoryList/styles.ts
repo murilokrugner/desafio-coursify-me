@@ -8,6 +8,9 @@ export const Container = styled.View`
 
   margin-left: 15px;
   margin-right: 15px;
+
+  margin-top: 46px;
+
 `;
 
 export const CategoryName = styled.Text`

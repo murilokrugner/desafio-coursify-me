@@ -2,11 +2,7 @@ import styled from 'styled-components/native';
 
 import colors from '../../../global/styles/colors';
 
-export const Container = styled.ScrollView.attrs((props) => ({
-  horizontal: true,
-
-  showsHorizontalScrollIndicator: false,
-}))`
+export const Container = styled.View`
   margin-top: 28px;
 
   margin-left: 17px;
@@ -75,7 +71,7 @@ export const DescriptionPost = styled.Text`
 
   font-size: 17px;
 
-  text-align: justify;
+  text-align: left;
 `;
 
 export const ContainerReadMore = styled.TouchableOpacity`

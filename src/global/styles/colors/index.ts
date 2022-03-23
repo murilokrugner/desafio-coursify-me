@@ -15,6 +15,7 @@ interface PropsColors {
   footer: string;
 
   button: string;
+  content: string;
 
 }
 
@@ -37,6 +38,8 @@ const colors: PropsColors = {
   footer: '#1ABC9C',
 
   button: '#FFA900',
+
+  content: '#666666',
 
 };
 

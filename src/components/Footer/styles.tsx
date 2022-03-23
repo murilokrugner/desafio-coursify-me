@@ -11,6 +11,10 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  margin-top: 46px;
+
+
 `;
 
 export const Logo = styled.Image`
