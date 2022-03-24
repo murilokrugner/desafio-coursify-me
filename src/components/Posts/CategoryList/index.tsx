@@ -28,7 +28,7 @@ interface Datas {
   post: object;
 }
 
-const CategoryList: React.FC = () => {
+const CategoryList: React.FC = ({selectFilter}: string) => {
   const [loading, setLoading] = useState(false);
   const [datas, setDatas] = useState<Datas[]>([]);
 
@@ -64,6 +64,54 @@ const CategoryList: React.FC = () => {
         dataPosts = [];
       });
 
+      switch (selectFilter) {
+        case 'A-Z':
+          datas.sort(function (a, b) {
+            if (a.category.name > b.category.name) {
+              return 1;
+            }
+            if (a.category.name < b.category.name) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+        case 'Z-A':
+          datas.reverse(function (a, b) {
+            if (a.category.name > b.category.name) {
+              return -1;
+            }
+            if (a.category.name < b.category.name) {
+              return 1;
+            }
+            return 0;
+          });
+          break;
+        case 'Mais visualizados':
+            datas.sort(function (a, b) {
+              if (a.post.postData.page_views > b.post.postData.page_views) {
+                return 1;
+              }
+              if (a.post.postData.page_views < b.post.postData.page_views) {
+                return -1;
+              }
+              return 0;
+            });
+            break;
+            case 'Menos visualizados':
+              datas.sort(function (a, b) {
+                if (a.post.postData.page_views > b.post.postData.page_views) {
+                  return -1;
+                }
+                if (a.post.postData.page_views < b.post.postData.page_views) {
+                  return 1;
+                }
+                return 0;
+              });
+              break;
+        default:
+      }
+
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -71,7 +119,7 @@ const CategoryList: React.FC = () => {
   }
   useEffect(() => {
     loadData();
-  }, []);
+  }, [selectFilter]);
 
   return (
     <>
