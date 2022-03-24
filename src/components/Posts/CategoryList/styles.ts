@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import colors from '../../../global/styles/colors';
+import fonts from '../../../global/styles/fonts';
 
 export const Container = styled.View`
   flex-direction: row;
@@ -17,7 +18,7 @@ export const CategoryName = styled.Text`
   color: ${colors.text};
   opacity: 1;
 
-  font-family: 'Roboto';
+  font-family: ${fonts.primary};
   font-weight: bold;
   font-size: 22px;
 `;
@@ -32,5 +33,5 @@ export const TextButtonViewMore = styled.Text`
   opacity: 1;
 
   font-size: 17px;
-  font-family: 'Roboto';
+  font-family: ${fonts.primary};
 `;

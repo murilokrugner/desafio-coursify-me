@@ -12,9 +12,25 @@ import PostsList from '../PostsList';
 import api from '../../../services/api';
 import Footer from '../../Footer';
 
+interface DataPosts {
+  data: {
+    postData: object;
+    image: object;
+  };
+  push: () => void;
+}
+
+interface Datas {
+  category: {
+    id: number;
+    name: string
+  },
+  post: object;
+}
+
 const CategoryList: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState<Datas[]>([]);
 
   async function loadData() {
     try {
@@ -24,7 +40,7 @@ const CategoryList: React.FC = () => {
       
       var images = await api.get(`media/`);
 
-      var dataPosts = [];
+      var dataPosts: DataPosts | [] = [];
 
       categories.data.map(async category => {
         var posts = await api.get(`posts?categories=${category.id}`);

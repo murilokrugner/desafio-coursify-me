@@ -15,11 +15,16 @@ import {
   ReadMore,
 } from './styles';
 
-const PostsList: React.FC = ({data, loading}) => {
+interface Props {
+  data: object;
+  loading: boolean;
+}
+
+const PostsList: React.FC<Props> = ({data, loading}: Props) => {
   const navigation = useNavigation();
 
-  function handleNavigation(post: object) {
-    navigation.navigate('ViewPost', post);
+  function handleNavigation(post: object, image: object) {
+    navigation.navigate('ViewPost', {post, image});
   }
 
   return (
@@ -32,7 +37,7 @@ const PostsList: React.FC = ({data, loading}) => {
         keyExtractor={item => item.postData.id + Math.random()}
         renderItem={({item, index}) => (          
           <ContainerPost onPress={() => {
-            handleNavigation(item.postData);
+            handleNavigation(item.postData, item.image);
           }}>    
               {item.image ? (
                 <ImagePost source={{uri: item.image.guid.rendered}} />      
@@ -51,7 +56,7 @@ const PostsList: React.FC = ({data, loading}) => {
 
               <ContainerReadMore
                 onPress={() => {
-                  handleNavigation(item.postData);
+                  handleNavigation(item.postData, item.image);
                 }}>
                 <ReadMore>Ler mais</ReadMore>
               </ContainerReadMore>

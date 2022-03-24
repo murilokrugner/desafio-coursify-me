@@ -7,7 +7,19 @@ import {Container, ContainerTitlePost, TitlePost, ContainerContent, ContentText}
 import CoverImagePost from '../CoverImagePost';
 import Footer from '../../Footer';
 
-const ContentPost: React.FC = ({post}: object) => {
+interface Props {
+  post: {
+    title: {
+      rendered: string;
+    },
+    excerpt:{
+      rendered: string;
+    }
+  }
+  image: object;
+}
+
+const ContentPost: React.FC<Props> = ({post, image}: Props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,11 +36,11 @@ const ContentPost: React.FC = ({post}: object) => {
       </ContainerTitlePost>
 
       <ContainerContent>
-        <ContentText>{post.excerpt.rendered.substring(3, 300)}</ContentText>
+        <ContentText>{post.excerpt.rendered.substring(3, 200)}</ContentText>
       </ContainerContent>
-      <CoverImagePost />
+      <CoverImagePost image={image}/>
       <ContainerContent>
-        <ContentText>{post.excerpt.rendered.substring(300, 10000)}</ContentText>
+        <ContentText>{post.excerpt.rendered.substring(300, 600)}</ContentText>
       </ContainerContent>
     </Container>
     <Footer />

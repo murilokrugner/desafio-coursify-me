@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-
 import colors from '../../../global/styles/colors';
+import fonts from '../../../global/styles/fonts';
 
 export const Container = styled.View`
   margin-top: 28px;
@@ -47,7 +47,7 @@ export const TitlePost = styled.Text`
 
   opacity: 1;
 
-  font-family: 'Roboto';
+  font-family: ${fonts.primary};
 
   font-weight: bold;
 
@@ -67,7 +67,7 @@ export const DescriptionPost = styled.Text`
 
   opacity: 1;
 
-  font-family: 'Roboto';
+  font-family: ${fonts.primary};
 
   font-size: 17px;
 
@@ -87,7 +87,7 @@ export const ReadMore = styled.Text`
 
   opacity: 1;
 
-  font-family: 'Roboto';
+  font-family: ${fonts.primary};
 
   font-size: 17px;
 
