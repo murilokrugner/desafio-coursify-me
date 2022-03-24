@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { FlatList } from 'react-native';
+import {FlatList} from 'react-native';
 import {
   Container,
   CategoryName,
@@ -14,31 +14,42 @@ import Footer from '../../Footer';
 
 const CategoryList: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [datas, setDatas] = useState([]);
 
   async function loadData() {
     try {
       setLoading(true);
 
-      const response = await api.get('categories/');
+      var categories = await api.get('categories');
+      
+      var images = await api.get(`media/`);
 
-      response.data.map(async category => {
-        var post = await api.get(`posts?categories=${category.id}`);
+      var dataPosts = [];
 
-        const data = {
-          id: category.id,
-          name: category.name,
-          posts:  post.data,
+      categories.data.map(async category => {
+        var posts = await api.get(`posts?categories=${category.id}`);
+
+        posts.data.map(post => {
+          var url = images.data.find(image => image.id === post.featured_media);
+          var data = {
+            postData: post,
+            image: url,
+          }
+
+          dataPosts.push(data);
+        });
+
+        var data = {
+          category,
+          post: dataPosts,
         }
 
-        setCategories(oldState => [...oldState, data]);
-
-        
+        setDatas(oldState => [...oldState, data]);
+        dataPosts = [];
       });
 
       setLoading(false);
     } catch (error) {
-      
       setLoading(false);
     }
   }
@@ -51,29 +62,27 @@ const CategoryList: React.FC = () => {
       {loading ? (
         <></>
       ) : (
-      
-        <FlatList          
-          data={categories}
-          keyExtractor={item => item.id + Math.random()}
-          ListFooterComponent={<Footer/>}
+        <>
+       <FlatList
+          data={datas}
+          keyExtractor={(item) => item.category.id + Math.random()}
+          ListFooterComponent={<Footer />}
           renderItem={({item, index}) => (
             <>
               <Container>
-                <CategoryName>{item.name.toUpperCase()}</CategoryName>
+                <CategoryName>{item.category.name.toUpperCase()}</CategoryName>
 
                 <ButtonViewMore>
                   <TextButtonViewMore>VER MAIS ►</TextButtonViewMore>
                 </ButtonViewMore>
-              </Container>     
-                <PostsList data={item.posts} loading={loading}/>
-              </>
+              </Container>
+              <PostsList data={item.post} loading={loading} />
+            </>
           )}
-        />
-         
+        />   
+        </>
       )}
-
     </>
-
   );
 };
 

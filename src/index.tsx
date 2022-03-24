@@ -8,6 +8,8 @@ import colors from './global/styles/colors';
 
 import App from './App';
 
+import './config/ReactotronConfig';
+
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
 ]);

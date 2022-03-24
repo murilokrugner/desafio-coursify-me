@@ -3,13 +3,13 @@ import React from 'react';
 import {Container} from './styles';
 
 import ContentPost from '../../../components/Posts/ContentPost';
-import Footer from '../../../components/Footer';
 
-const ViewPost: React.FC = () => {
+const ViewPost: React.FC = ({route}) => {
+  const post = route.params;
+
   return (
     <Container>
-      <ContentPost />
-      <Footer />
+      <ContentPost post={post}/>
     </Container>
   );
 };

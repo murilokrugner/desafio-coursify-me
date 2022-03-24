@@ -8,7 +8,7 @@ export const Container = styled.View`
   margin-left: 17px;
 `;
 
-export const ContainerPost = styled.View`
+export const ContainerPost = styled.TouchableOpacity`
   flex-direction: column;
 
   justify-content: space-around;

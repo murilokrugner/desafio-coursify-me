@@ -1,26 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {ScrollView} from 'react-native';
 
 import {Container, ContainerTitlePost, TitlePost, ContainerContent, ContentText} from './styles';
 
 import CoverImagePost from '../CoverImagePost';
+import Footer from '../../Footer';
 
-const ContentPost: React.FC = () => {
+const ContentPost: React.FC = ({post}: object) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+  }, []);
+
   return (
     <ScrollView style={{flex: 1}}>
     <Container>
       <ContainerTitlePost>
         <TitlePost>
-          como criar uma landing page de alta conversão para o seu curso online
+          {post.title.rendered}
         </TitlePost>
       </ContainerTitlePost>
 
       <ContainerContent>
-        <ContentText>Uma landing page de alta conversão é o que todomundo que vende online precisa ter para otimizarresultados. No mercado competitivo de hoje em dia, é justodizer que quem tem a melhor página de vendasai na frente.</ContentText>
+        <ContentText>{post.excerpt.rendered.substring(3, 300)}</ContentText>
       </ContainerContent>
       <CoverImagePost />
+      <ContainerContent>
+        <ContentText>{post.excerpt.rendered.substring(300, 10000)}</ContentText>
+      </ContainerContent>
     </Container>
+    <Footer />
     </ScrollView>
   );
 };
